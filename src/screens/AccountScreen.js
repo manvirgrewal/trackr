@@ -8,18 +8,24 @@ import { Context as AuthContext } from "../context/AuthContext";
 const AccountScreen = () => {
   const { signout } = useContext(AuthContext);
   return (
-    <View style={styles.signout}>
-      <Button onPress={signout} title="Sign Out!"></Button>
-    </View>
+    <SafeAreaView forceInset={{ top: "always" }} style={styles.accountView}>
+      <Button
+        style={styles.signoutBtn}
+        onPress={signout}
+        title="Sign Out!"
+      ></Button>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  signout: {
+  accountView: {
     flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+  },
+  signoutBtn: {
     alignSelf: "center",
-    justifyContent: "center",
-    fontSize: 25,
     width: 125,
   },
 });

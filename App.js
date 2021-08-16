@@ -11,6 +11,7 @@ import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { setNavigator } from "./src/navigationRef";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
@@ -18,14 +19,59 @@ const switchNavigator = createSwitchNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen,
   }),
-  mainFlow: createBottomTabNavigator({
-    trackListFlow: createStackNavigator({
-      TrackList: TrackListScreen,
-      TrackDetail: TrackDetailScreen,
-    }),
-    Account: AccountScreen,
-    TrackCreate: TrackCreateScreen,
-  }),
+  mainFlow: createBottomTabNavigator(
+    {
+      trackListFlow: {
+        screen: createStackNavigator({
+          TrackList: TrackListScreen,
+          TrackDetail: TrackDetailScreen,
+        }),
+        navigationOptions: {
+          tabBarLabel: "Tracks",
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons
+              name="go-kart-track"
+              size={24}
+              color={focused ? "#D4AF37" : "#900"}
+            />
+          ),
+        },
+      },
+      TrackCreate: {
+        screen: TrackCreateScreen,
+        navigationOptions: {
+          tabBarLabel: "Create",
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons
+              name="map-plus"
+              size={24}
+              color={focused ? "#D4AF37" : "#900"}
+            />
+          ),
+        },
+      },
+      Account: {
+        screen: AccountScreen,
+        navigationOptions: {
+          tabBarLabel: "Account",
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons
+              name="account"
+              size={24}
+              color={focused ? "#D4AF37" : "#900"}
+            />
+          ),
+        },
+      },
+    },
+    {
+      order: ["TrackCreate", "trackListFlow", "Account"],
+      tabBarOptions: {
+        activeTintColor: "#D4AF37",
+        inactiveTintColor: "gray",
+      },
+    }
+  ),
 });
 
 const App = createAppContainer(switchNavigator);
