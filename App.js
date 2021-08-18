@@ -25,8 +25,18 @@ const switchNavigator = createSwitchNavigator({
     {
       trackListFlow: {
         screen: createStackNavigator({
-          TrackList: TrackListScreen,
-          TrackDetail: TrackDetailScreen,
+          TrackList: {
+            screen: TrackListScreen,
+            navigationOptions: {
+              title: "Track List",
+            },
+          },
+          TrackDetail: {
+            screen: TrackDetailScreen,
+            navigationOptions: {
+              title: "",
+            },
+          },
         }),
         navigationOptions: {
           tabBarLabel: "Tracks",

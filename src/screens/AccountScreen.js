@@ -12,7 +12,7 @@ const AccountScreen = () => {
       <Button
         style={styles.signoutBtn}
         onPress={signout}
-        title="Sign Out!"
+        title="Sign Out"
       ></Button>
     </SafeAreaView>
   );
