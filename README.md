@@ -1,6 +1,8 @@
 # trackr
 A simple react-native route tracking app. It lets a user record map routes they take and view them later.
 
+download trackr and track-server, put them into one folder
+
 cd into trackr
 
 run expo start
